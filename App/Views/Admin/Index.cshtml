@@ -1,0 +1,53 @@
+﻿<div class="row">
+    <div class="col">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Url</th>
+                <th scope="col">Clicks</th>
+                <th scope="col">-</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var url in Model)
+            {
+                var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(url.UrlData);
+                var base64url = System.Convert.ToBase64String(plainTextBytes);
+                <tr>
+                    <td>@url.Id</td>
+                    <td><a href="/go/@base64url" target="_blank">@url.UrlData</a></td>
+                    <td>@url.Clicks</td>
+                    <td><a class="btn btn-primary" href="/admin/url/remove/@url.Id" role="button">Remove</a></td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <form action="/admin/url/add" method="post">
+            <div class="mb-3">
+                <input type="text" class="form-control" name="url">
+            </div>
+            <div class="mb-3">
+                <button type="submit" value=" Send" class="btn btn-primary" id="submit">Add url</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="mb-3">
+            <a class="btn btn-primary" href="/admin/logout" role="button">Logout</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="mb-3">
+            <a class="btn btn-primary" href="/" role="button">Main Page</a>
+        </div>
+    </div>
+</div>

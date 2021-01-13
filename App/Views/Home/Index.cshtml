@@ -1,0 +1,30 @@
+﻿<div class="row">
+    <div class="col">
+        <div class="mb-3">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Urls List</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var url in Model)
+                {
+                    var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(url.UrlData);
+                    var base64url = System.Convert.ToBase64String(plainTextBytes);
+                <tr>
+                    <td><a href="/go/@base64url" target="_blank">@url.UrlData</a></td>
+                </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="mb-3">
+            <a class="btn btn-primary" href="/admin" role="button">Admin</a>
+        </div>
+    </div>
+</div>
